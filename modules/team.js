@@ -8,7 +8,8 @@ module.exports = {
 
     var newTeam = {
       roster: [],
-      gender: request.gender
+      gender: request.gender,
+      sport: request.sport
     }
 
     Team.create(newTeam, function(error, result) {
