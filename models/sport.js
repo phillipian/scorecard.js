@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var sportSchema = new Schema({
   name: { type: String, required: true },
+  sport: { type: Schema.Types.ObjectId, required: true, ref: 'Sport' },
   season: { type: String, required: true, uppercase: true, enum: [
       'FALL', 'WINTER', 'SPRING'
   ]},
