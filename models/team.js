@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var teamSchema = new Schema({
+  sport: { type: Schema.Types.ObjectId, required: true, ref: 'Sport' },
   roster: [{
     name: {
       first: { type: String, required: true },
