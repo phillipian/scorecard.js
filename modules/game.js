@@ -125,7 +125,7 @@ module.exports = {
       }
     });
   },
-  setStatus: function(req, res) {
+  setStatus: function(req, res, io) {
     var request = req.body;
 
     var result = request.status;
@@ -139,6 +139,8 @@ module.exports = {
       }
 
       if (result) {
+        io.sockets.emit('status-update');
+
         res.status(200).json({
           result: true,
           message: 'Game\s status was successfully updated'

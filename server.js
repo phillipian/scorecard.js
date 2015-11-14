@@ -67,9 +67,9 @@ router.route('/games/:id/score')
     Game.updateScore(req, res, io);
   });
 
-router.route('/games/:id')
+router.route('/games/:id/status')
   .put(function(req, res) {
-    Game.setStatus(req, res);
+    Game.setStatus(req, res, io);
   })
 
 app.use('/api/v1/', router);
