@@ -41,8 +41,7 @@ module.exports = {
         res.json({
           result
         });
-      }
-      else {
+      } else {
         res.json({
           result: false,
           message: 'No teams were found.'

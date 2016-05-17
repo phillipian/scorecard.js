@@ -12,7 +12,8 @@ Scorecard is *The Phillipian's* very own full fledged game tracking database.
  - **See the current score** of any game.
 
 ## To Do
- - [ ] Live scoring through sockets.
+ - [x] Live scoring through sockets.
+  - These need to be redone though, but temporary ones were put in place.
  - [ ] Integrate with mobile application.
  - [ ] Create and modularize dashboard.
 

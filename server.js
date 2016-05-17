@@ -1,36 +1,39 @@
 var express = require('express'),
-    parser = require('body-parser'),
-    mongoose = require('mongoose');
+  parser = require('body-parser'),
+  mongoose = require('mongoose');
 
 var Game = require('./modules/game'),
-    School = require('./modules/school'),
-    Sport = require('./modules/sport'),
-    Team = require('./modules/team');
+  School = require('./modules/school'),
+  Sport = require('./modules/sport'),
+  Team = require('./modules/team');
 
 var config = require('./config');
 
 var app = express();
-var http = require('http').createServer(app);
+var http = require('http')
+  .createServer(app);
 var io = require('socket.io')(http);
 
 mongoose.connect(process.env.MONGOLAB_URI || config.database);
 
 app.set('port', process.env.PORT || 3000);
 
-app.use(parser.urlencoded({extended: true}));
+app.use(parser.urlencoded({
+  extended: true
+}));
 app.use(parser.json());
 
 app.all('*', function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
 
-    next();
+  next();
 });
 
 var router = express.Router();
 
 router.use(function(req, res, next) {
-  console.log('Processing a request to',req.url + '.');
+  console.log('Processing a request to', req.url + '.');
   next();
 });
 
@@ -75,13 +78,15 @@ router.route('/games/:id/status')
 app.use('/api/v1/', router);
 
 app.use('*', function request(req, res) {
-  res.json({error: 'Nothing to see here, move along!'});
+  res.json({
+    error: 'Nothing to see here, move along!'
+  });
 });
 
-io.on('connection', function(socket){
+io.on('connection', function(socket) {
   console.log('A user connected.');
 });
 
-http.listen(app.get('port'), function(){
+http.listen(app.get('port'), function() {
   console.log('Phillipian Sports is up and running on port', app.get('port') + '.');
 });
